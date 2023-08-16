@@ -66,7 +66,9 @@ SRCS	= push_swap.c \
 OBJS	= $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 DEPS	= $(addprefix $(DEP_DiIR), $(addsuffix .d, $(basename $(SRCS))))
 
-# -=-=-=-=- RULE -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
+#		#=======#
+# 		||RULES||
+#		#=======#
 
 %.o: %.c Makefile
 	@${CC} ${CFLAGS} ${XFLAGS} ${DFLAGS} $I -c $< -o $@
@@ -74,34 +76,34 @@ DEPS	= $(addprefix $(DEP_DiIR), $(addsuffix .d, $(basename $(SRCS))))
 all : makelib $(NAME)
 
 makelib:
-	@$(MAKE) -C $(LIB_DIR)
+	@$(MAKE) -s -C $(LIB_DIR)
 
 $(NAME):: $(OBJS)
-	$(CC) $(CFLAGS) $(XFLAGS) $(OBJS) $(GFLAGS) -L $(LIB_DIR) -lft -o $(NAME)
-	@printf "\n\t$(WHITE)Program \033[1;31mTest $(WHITE)has been compiled!$(DEF_COLOR)\n"
+	@$(CC) $(CFLAGS) $(XFLAGS) $(OBJS) $(GFLAGS) -L $(LIB_DIR) -lft -o $(NAME)
+	@printf "\n$(GREEN)[ $(NAME) compiled! ]$(DEF_CLR)\n"
 	
 $(NAME)::
-	@printf "\t$(WHITE)Nothing more to be done for program \033[1;31mTest$(DEF_COLOR)\n"
+	@printf "$(WHITE)$(NAME)$(DEF_CLR) is up to date.\n"
 
 clean:
-	@$(MAKE) clean -C $(LIB_DIR)
+	@$(MAKE) -s clean -C $(LIB_DIR)
 	@$(RM) -rf $(OBJ_DIR) $(DEP_DIR)
-	@echo "$(BLUE)  Test object and dependencies files cleaned.$(DEF_COLOR)"
+	@echo "$(BLUE)[ Object and dependencies files cleaned. ]$(DEF_CLR)"
 	
 fclean:
-	@$(MAKE) fclean -C $(LIB_DIR)
+	@$(MAKE) -s fclean -C $(LIB_DIR)
 	@$(RM) -rf $(OBJ_DIR) $(DEP_DIR)
 	@$(RM) $(NAME)
-	@echo "$(WHITE) All objects, dependencies and executables removed.$(DEF_COLOR)"
+	@echo "$(RED)[ All objects, dependencies and executables removed. ]$(DEF_CLR)"
 	
 re:
-	@$(MAKE) fclean
-	@$(MAKE) all
-	@echo "$(GREEN) Cleaned and rebuilt everything for Test project.$(DEF_COLOR)"
+	@$(MAKE) -s fclean
+	@$(MAKE) -s all
+	@echo "$(CYAN)[ Cleaned and rebuilt everything for $(NAME). ]$(DEF_CLR)"
 	
 $(OBJ_DIR)%.o: %.c $(MKFL)
 	@$(MK) $(dir $@) $(dir $(subst $(OBJ_DIR),$(DEP_DIR), $@))
-	@printf "\r$(GREEN)\tCompiling: $(YELLOW)$< $(DEF_CLR)                   \r"
+	@printf "\r$(BLUE)\tCompiling: $(YELLOW)$< $(DEF_CLR)                   \r"
 	@$(CC) $(CFLAGS) $(DFLAGS) $I -c $< -o $@
 	@mv $(patsubst %.o, %.d, $@) $(dir $(subst $(OBJ_DIR), $(DEP_DIR), $@))
 	

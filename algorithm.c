@@ -99,5 +99,46 @@ void	alg_4(t_list *lst)
 		ft_printf("pa\nrr\n");
 	}
 }
-//void	alg_5(t_list *lst);
+
+t_list	*alg_5(t_list *A)
+{
+	t_list *B;
+	t_list *tmp;
+	t_list *ctrl;
+
+
+	B = NULL;
+	while (A->val != 2)
+	{
+		ft_printf("%d",A->val);
+		if (A != A->nxt)
+			tmp = A->nxt;
+		else
+			tmp = NULL;
+		B = push(A, B);
+		A = tmp;
+	}
+	while (B->nxt != B)
+	{
+		ft_printf("%d",B->val);
+		tmp = B->nxt;
+		A = push(B, A);
+		B = tmp;
+	}
+	A = push(B, A);
+	ft_printf("STACK B: ");
+	ctrl = B;
+	if(B)
+	{
+		while(B->nxt != ctrl )
+		{
+			ft_printf("%d",B->val);
+			B = B->nxt;
+			usleep(1000000);
+		}
+		ft_printf("%d\n",B->val);
+	}
+	//lst = swap(lst);
+	return (A);
+}
 //void	alg_full(t_list *lst);

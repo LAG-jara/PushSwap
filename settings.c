@@ -12,18 +12,19 @@
 
 #include "push_swap.h"
 //		FULL OF FUNC
-static void	choser(t_list *lst,int size)
+static t_list	*choser(t_list *lst,int size)
 {
+	//if(size == 2)
+	//	ft_printf("sa\n");
 	if(size == 2)
-		ft_printf("sa\n");
-	if(size == 3)
 		alg_3(lst, 0);
 	else if(size == 4)
 		alg_4(lst);
-	//else if(size == 5)
-	//	alg_5(lst);
+	else if(size == 5 || size == 3)
+	 	lst = alg_5(lst);
 	//else
 	//	alg_full(lst);
+	return (lst);
 }
 
 static void ft_closelst(t_list **lst)
@@ -65,6 +66,7 @@ void	ft_listify(int *intlst, int size)
 {
 	int i;
 	t_list	*lst;
+	t_list	*ctrl;
 
 	lst = NULL;
 	i = -1;
@@ -74,13 +76,16 @@ void	ft_listify(int *intlst, int size)
 	ft_closelst(&lst);
 	while(++i < size)
 		ft_addprevious(&lst);
-	choser(lst, size);
-	/*while(lst->nxt != NULL)
+	lst = choser(lst, size);
+	ctrl = lst;
+	ft_printf("STACK A: ");
+	while(lst->nxt != ctrl)
 	{
 		ft_printf("%d",lst->val);
 		lst = lst->nxt;
 	}
-	ft_printf("%d",lst->val);*/
+	ft_printf("%d\n",lst->val);
+	lst->pre->nxt = NULL;
 	ft_lstclear(&lst);
 	free(intlst);
 }

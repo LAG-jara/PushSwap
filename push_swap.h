@@ -26,12 +26,17 @@
 
 void	alg_3(t_list *lst, int fun);
 void	alg_4(t_list *lst);
-//void	alg_5(t_list *lst);
+t_list	*alg_5(t_list *lst);
 //void	alg_full(t_list *lst);
 
 void	ft_listify(int *lst, int size);
 int		ft_check_ordered(int *lst, int size);
 int 	ft_check_num(char *arg);
 int		ft_check_int(char *arg);
+
+t_list	*swap(t_list *down);
+t_list	*rotate(t_list *last);
+t_list	*rrotate(t_list *last);
+t_list	*push(t_list *stack_o, t_list *stack_d);
 
 #endif

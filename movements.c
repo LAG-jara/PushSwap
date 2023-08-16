@@ -12,13 +12,19 @@
 
 #include "push_swap.h"
 
-t_list *swap(t_list *down)
+
+t_list	*swap(t_list *down)
 {
 	t_list *up;
 
 	up = down->nxt;
 	if(up != down)
 	{
+		if (down->pre != up)
+		{
+			down->pre->nxt = up;
+			up->nxt->pre = down;
+		}
 		down->nxt = up->nxt;
 		up->nxt = down;
 		up->pre = down->pre;
@@ -27,7 +33,7 @@ t_list *swap(t_list *down)
 	return(up);
 }
 
-t_list *rotate(t_list *last)
+t_list	*rotate(t_list *last)
 {
 	return(last->nxt);
 }
@@ -37,17 +43,16 @@ t_list *rrotate(t_list *second)
 	return(second->pre);
 }
 
-// Push grabs the origin stack(stack_o) and put it in (stack_d)
-t_list *push(t_list *stack_o, t_list *stack_d)
+// Push grabs the origin stack(stack_o) and put it on destiny stack(stack_d)
+// Returns the stack whom is pushed. To not lose our origin stack we have to have
+// locate the save the stack_o->nxt before to use push unless its itself
+t_list	*push(t_list *stack_o, t_list *stack_d)
 {
-	t_list *new_o;
-
-	new_o = stack_o->nxt;
 	stack_o->pre->nxt = stack_o->nxt;
 	stack_o->nxt->pre = stack_o->pre;
-	stack_d->pre->nxt = stack_o;
 	if(stack_d)
 	{
+		stack_d->pre->nxt = stack_o;
 		stack_o->nxt = stack_d;
 		stack_o->pre = stack_d->pre;
 		stack_d->pre = stack_o;
@@ -57,9 +62,8 @@ t_list *push(t_list *stack_o, t_list *stack_d)
 		stack_o->nxt = stack_o;
 		stack_o->pre = stack_o;
 	}
-	return(new_o);
+	return(stack_o);
 }
-//TODO
 
 /*
 sa (swap a): Swap the first 2 elements at the top of stack a.
