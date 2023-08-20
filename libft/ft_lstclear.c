@@ -31,7 +31,7 @@ void	ft_lstclear(t_list **lst)
 	t_list	*tmp;
 
 	tmp = *lst;
-	while (*lst)
+	while ((*lst)->val)
 	{
 		tmp = (*lst)->nxt;
 		(*lst)->val = 0;

@@ -28,6 +28,8 @@
 
 // DEFINES
 
+enum e_bool {FALSE, TRUE};
+
 typedef struct s_list
 {
 	int				val;

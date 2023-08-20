@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   settings.c                                         :+:      :+:    :+:   */
+/*   alg_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alajara- <alajara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,60 +12,67 @@
 
 #include "push_swap.h"
 
-//		FULL OF FUNC
-void	choser(t_list **a)
+t_list	*ft_lstmax(t_list *a)
+{
+	int		max;
+	t_list	*tmp;
+
+	tmp = a;
+	max = a->val;
+	a = a->nxt;
+	while (a != tmp)
+	{
+		if (a->val > max)
+			max = a->val;
+		a = a->nxt;
+	}
+	while (tmp->val != max)
+		tmp = tmp->nxt;
+	return(tmp);
+}
+
+t_list	*ft_lstmin(t_list *a)
+{
+	int		min;
+	t_list	*tmp;
+
+	tmp = a;
+	min = a->val;
+	a = a->nxt;
+	while (a != tmp)
+	{
+		if (a->val < min)
+			min = a->val;
+		a = a->nxt;
+	}
+	while (tmp->val != min)
+		tmp = tmp->nxt;
+	return(tmp);
+}
+
+int	ft_lstsize_circ(t_list *a)
 {
 	int		size;
-
-	size = ft_lstsize_circ(*a);
-	if(size == 2)
-		ft_sa(a);
-	else if(size == 3)
-		alg_3(a);
-	else
-	 	alg_big(a);
-}
-
-static void ft_closelst(t_list **lst)
-{
-	t_list	*first;
-
-	first = (*lst);
-	while ((*lst)->nxt)
-		(*lst) = (*lst)->nxt;
-	(*lst)->nxt = first;
-}
-
-static void ft_addprevious(t_list **lst)
-{
-	t_list	*prev;
-
-	while(NULL == (*lst)->nxt->pre)
-	{
-		prev = (*lst);
-		(*lst) = (*lst)->nxt;
-		(*lst)->pre = prev;
-	}
-}
-
-
-
-void	ft_listify(int *intlst, int size)
-{
-	int i;
-	t_list	*lst;
 	t_list	*ctrl;
 
-	lst = NULL;
-	i = -1;
-	while(++i < size)
-		ft_lstadd_back(&lst, ft_lstnew(intlst[i]));
-	ft_closelst(&lst);
-	ft_addprevious(&lst);
-	choser(&lst);
-	ctrl = lst;
-	lst->pre->nxt = NULL;
-	ft_lstclear(&lst);
-	free(intlst);
+	size = 0;
+	ctrl = a;
+	while(++size && a->nxt != ctrl)
+		a = a->nxt;
+	return(size);
 }
 
+
+void	ft_lstprint(t_list *a)
+{
+	t_list *c;
+
+	c = a;
+	ft_printf("%d",a->val);
+	a = a->nxt;
+	while (a != c)
+	{
+		ft_printf(" %d",a->val);
+		a = a->nxt;
+	}
+}

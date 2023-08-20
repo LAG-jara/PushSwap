@@ -11,11 +11,15 @@
 # **************************************************************************** #
 
 ifneq (,$(findstring xterm,${TERM}))
-	BLUE  := $(shell tput -Txterm setaf 6)
-	YELLOW       := $(shell tput -Txterm setaf 3)
-	GREEN        := $(shell tput -Txterm setaf 2)
-	RED          := $(shell tput -Txterm setaf 1)
-	RESET        := $(shell tput -Txterm setaf 0)
+	DEF_CLR     := \033[0;39m
+	GRAY        := \033[0;90m
+	RED         := \033[0;91m
+	GREEN       := \033[0;92m
+	YELLOW      := \033[0;93m
+	BLUE        := \033[0;94m
+	MAGENTA     := \033[0;95m
+	CYAN        := \033[0;96m
+	WHITE       := \033[0;97m
 endif
 
 NAME = libft.a
@@ -78,23 +82,23 @@ DEPS = ${SRCS:.c=.d}
 
 %.o: %.c Makefile
 	@${CC} ${CFLAGS} -I./ -c $< -o $@
-	@echo "${BLUE}compiling: "${YELLOW}$<${RESET}
+	@printf "\r\t${BLUE}Compiling: ${YELLOW}$<${DEF_CLR}                      \r"
 
 all:
 	@$(MAKE) ${NAME}
 
 ${NAME}:: ${OBJS} libft.h Makefile
 	@ar crs ${NAME} ${OBJS}
-	@echo " ${GREEN}\ncompilation successful\n${RESET}"
+	@printf "\n$(GREEN)[ $(NAME) compiled! ]$(DEF_CLR)\n"
 
 $(NAME)::
-	@echo "${YELLOW}Libft library is up to date.${RESET}"
+	@echo "$(WHITE)Libft $(DEF_CLR)library is up to date."
 
 -include ${DEPS}
 
 clean:
 	@${RM} ${OBJS} ${DEPS}
-	@echo "${GREEN}\ndestruction successful\n${RESET}"
+	@echo "${RED}[ DESTRUCTION ${GREEN}successful ]${DEF_CLR}"
 
 fclean:
 	@$(MAKE) clean

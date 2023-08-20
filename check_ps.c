@@ -55,3 +55,30 @@ int	ft_check_int(char *arg)
 	}
 	return (1);
 }
+
+int	ft_check_order(int *lst, int size)
+{
+	int i;
+
+	i = -1;
+	while(++i < size)
+	{
+		if(lst[i] != i)
+			return (0);
+	}
+	return (1);
+}
+
+int	ft_check_sorted(t_list *a)
+{
+	t_list	*ctrl;
+
+	ctrl = a;
+	while (a->nxt != ctrl)
+	{
+		if (a->val > a->nxt->val)
+			return (0);
+		a = a->nxt;
+	}
+	return (1);
+}

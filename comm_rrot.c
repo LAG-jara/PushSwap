@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   settings.c                                         :+:      :+:    :+:   */
+/*   comm_rrot.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alajara- <alajara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,60 +12,21 @@
 
 #include "push_swap.h"
 
-//		FULL OF FUNC
-void	choser(t_list **a)
+void	ft_rra(t_list **a)
 {
-	int		size;
-
-	size = ft_lstsize_circ(*a);
-	if(size == 2)
-		ft_sa(a);
-	else if(size == 3)
-		alg_3(a);
-	else
-	 	alg_big(a);
+	rrotate(a);
+	ft_printf("rra\n");
 }
 
-static void ft_closelst(t_list **lst)
+void	ft_rrb(t_list **b)
 {
-	t_list	*first;
-
-	first = (*lst);
-	while ((*lst)->nxt)
-		(*lst) = (*lst)->nxt;
-	(*lst)->nxt = first;
+	rrotate(b);
+	ft_printf("rrb\n");
 }
 
-static void ft_addprevious(t_list **lst)
+void	ft_rrr(t_list **a, t_list **b)
 {
-	t_list	*prev;
-
-	while(NULL == (*lst)->nxt->pre)
-	{
-		prev = (*lst);
-		(*lst) = (*lst)->nxt;
-		(*lst)->pre = prev;
-	}
+	rrotate(a);
+	rrotate(b);
+	ft_printf("rrr\n");
 }
-
-
-
-void	ft_listify(int *intlst, int size)
-{
-	int i;
-	t_list	*lst;
-	t_list	*ctrl;
-
-	lst = NULL;
-	i = -1;
-	while(++i < size)
-		ft_lstadd_back(&lst, ft_lstnew(intlst[i]));
-	ft_closelst(&lst);
-	ft_addprevious(&lst);
-	choser(&lst);
-	ctrl = lst;
-	lst->pre->nxt = NULL;
-	ft_lstclear(&lst);
-	free(intlst);
-}
-

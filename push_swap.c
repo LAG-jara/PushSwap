@@ -69,7 +69,7 @@ int	main(int ac, char **av)
 	ft_sort(lst, ac - 1);
 	if (lst[0] == -1)
 		return (ft_error(&lst));
-	if(ft_check_ordered(lst, ac - 1))
+	if(ft_check_order(lst, ac - 1))
 		return (0);
 	i = -1;
 	ft_listify(lst, ac - 1);
