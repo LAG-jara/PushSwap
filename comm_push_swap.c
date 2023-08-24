@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	ft_pa(t_list **b, t_list **a)
+void	ft_pa(t_list **a, t_list **b)
 {
 	push(b, a);
 	ft_printf("pa\n");

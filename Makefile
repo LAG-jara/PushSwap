@@ -59,17 +59,17 @@ LIBFT	= $(LIB_DIR)libft.a
 
 SRCS	= push_swap.c \
 		check_ps.c \
-		actions.c \
-		settings.c \
 		alg_utils.c \
 		algorithm.c \
-		smooth_operator.c \
+		finder.c \
+		comm_actions.c \
 		comm_rot.c \
 		comm_rrot.c \
 		comm_push_swap.c \
-		cases_n_types.c \
-		cases_apply.c \
-		cases.c
+		cases_ab.c \
+		cases_ba.c \
+		cases_usage.c \
+		list_utils.c
 
 OBJS	= $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 DEPS	= $(addprefix $(DEP_DiIR), $(addsuffix .d, $(basename $(SRCS))))

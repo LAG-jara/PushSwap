@@ -24,7 +24,6 @@ void	ft_rb(t_list **b)
 	ft_printf("rb\n");
 }
 
-
 void	ft_rr(t_list **a, t_list **b)
 {
 	rotate(a);

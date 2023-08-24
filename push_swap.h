@@ -24,14 +24,15 @@
 	struct s_list	*next;
 }	t_list;*/
 
+void	choser(t_list **a);
 void	alg_3(t_list **lst);
-void	alg_4(t_list **lst);
 void	alg_big(t_list **lst);
 //void	alg_full(t_list *lst);
 
+void	ft_indexify(int *lst, int *tmp, int size);
 void	ft_listify(int *lst, int size);
 int		ft_check_order(int *lst, int size);
-int 	ft_check_num(char *arg);
+int		ft_check_num(char *arg);
 int		ft_check_int(char *arg);
 
 //	ACTIONS
@@ -66,29 +67,29 @@ t_list	*ft_lstmax(t_list *a);
 t_list	*ft_lstmin(t_list *a);
 
 // SMOOTH
-t_list	*ft_sort_b(t_list **stack_a);
-t_list	**ft_sort_a(t_list **stack_a, t_list **stack_b);
-void	ft_sort_b_till_3(t_list **stack_a, t_list **stack_b);
+//t_list	*ft_sort_b(t_list **stack_a);
+//t_list	**ft_sort_a(t_list **stack_a, t_list **stack_b);
 
-int	ft_find_place_b(t_list *stack_b, int nbr_push);
-int	ft_find_place_a(t_list *stack_a, int nbr_push);
+int		ft_find_place_b(t_list *stack_b, int nbr_push);
+int		ft_find_place_a(t_list *stack_a, int nbr_push);
 
-int	ft_rotate_type_ba(t_list *stack_a, t_list *stack_b);
-int	ft_rotate_type_ab(t_list *stack_a, t_list *stack_b);
+int		ft_find_index(t_list *a, int nbr);
+int		ft_rotate_type_ba(t_list *stack_a, t_list *stack_b);
+int		ft_rotate_type_ab(t_list *stack_a, t_list *stack_b);
 
-int	ft_case_rarb(t_list *a, t_list *b, int c);
-int	ft_case_rrarrb(t_list *a, t_list *b, int c);
-int	ft_case_rrarb(t_list *a, t_list *b, int c);
-int	ft_case_rarrb(t_list *a, t_list *b, int c);
-int	ft_case_rarb_a(t_list *a, t_list *b, int c);
-int	ft_case_rrarrb_a(t_list *a, t_list *b, int c);
-int	ft_case_rarrb_a(t_list *a, t_list *b, int c);
-int	ft_case_rrarb_a(t_list *a, t_list *b, int c);
+int		ft_case_rarb(t_list *a, t_list *b, int c);
+int		ft_case_rrarrb(t_list *a, t_list *b, int c);
+int		ft_case_rrarb(t_list *a, t_list *b, int c);
+int		ft_case_rarrb(t_list *a, t_list *b, int c);
+int		ft_case_rarb_a(t_list *a, t_list *b, int c);
+int		ft_case_rrarrb_a(t_list *a, t_list *b, int c);
+int		ft_case_rarrb_a(t_list *a, t_list *b, int c);
+int		ft_case_rrarb_a(t_list *a, t_list *b, int c);
 
-int	ft_apply_rarb(t_list **a, t_list **b, int c, char s);
-int	ft_apply_rrarrb(t_list **a, t_list **b, int c, char s);
-int	ft_apply_rrarb(t_list **a, t_list **b, int c, char s);
-int	ft_apply_rarrb(t_list **a, t_list **b, int c, char s);
+int		use_rarb(t_list **a, t_list **b, int c, char s);
+int		use_rrarrb(t_list **a, t_list **b, int c, char s);
+int		use_rrarb(t_list **a, t_list **b, int c, char s);
+int		use_rarrb(t_list **a, t_list **b, int c, char s);
 
 // DEBUG FUNCTIONS
 

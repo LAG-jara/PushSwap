@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   comm_rrot.c                                        :+:      :+:    :+:   */
+/*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alajara- <alajara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,21 +12,34 @@
 
 #include "push_swap.h"
 
-void	ft_rra(t_list **a)
+static void	ft_addprevious(t_list **lst)
 {
-	rrotate(a);
-	ft_printf("rra\n");
+	t_list	*prev;
+
+	while (NULL == (*lst)->nxt->pre)
+	{
+		prev = (*lst);
+		(*lst) = (*lst)->nxt;
+		(*lst)->pre = prev;
+	}
 }
 
-void	ft_rrb(t_list **b)
+void	ft_listify(int *intlst, int size)
 {
-	rrotate(b);
-	ft_printf("rrb\n");
-}
+	int		i;
+	t_list	*lst;
 
-void	ft_rrr(t_list **a, t_list **b)
-{
-	rrotate(a);
-	rrotate(b);
-	ft_printf("rrr\n");
+	lst = NULL;
+	i = -1;
+	while (++i < size)
+		ft_lstadd_back(&lst, ft_lstnew(intlst[i]));
+	(ft_lstlast(lst))->nxt = lst;
+	ft_addprevious(&lst);
+	if (size == 3)
+		alg_3(&lst);
+	else
+		alg_big(&lst);
+	free(intlst);
+	lst->pre->nxt = NULL;
+	ft_lstclear(&lst);
 }

@@ -28,7 +28,7 @@ t_list	*ft_lstmax(t_list *a)
 	}
 	while (tmp->val != max)
 		tmp = tmp->nxt;
-	return(tmp);
+	return (tmp);
 }
 
 t_list	*ft_lstmin(t_list *a)
@@ -47,7 +47,7 @@ t_list	*ft_lstmin(t_list *a)
 	}
 	while (tmp->val != min)
 		tmp = tmp->nxt;
-	return(tmp);
+	return (tmp);
 }
 
 int	ft_lstsize_circ(t_list *a)
@@ -57,22 +57,49 @@ int	ft_lstsize_circ(t_list *a)
 
 	size = 0;
 	ctrl = a;
-	while(++size && a->nxt != ctrl)
+	while (++size && a->nxt != ctrl)
 		a = a->nxt;
-	return(size);
+	return (size);
 }
 
+void	ft_indexify(int *lst, int *tmp, int size)
+{
+	int	i;
+	int	j;
+
+	j = -1;
+	while (++j < size)
+	{
+		i = -1;
+		tmp[j] = 0;
+		while (++i < size)
+		{
+			if (lst[i] < lst[j])
+				tmp[j] += 1;
+			if (lst[i] == lst[j] && i != j)
+				tmp[0] = -1;
+		}
+	}
+	i = -1;
+	while (++i < size)
+		lst[i] = tmp[i];
+	free(tmp);
+}
 
 void	ft_lstprint(t_list *a)
 {
-	t_list *c;
+	t_list	*c;
 
+	if (!a)
+		return ;
+	ft_printf("\n");
 	c = a;
-	ft_printf("%d",a->val);
+	ft_printf("%d", a->val);
 	a = a->nxt;
 	while (a != c)
 	{
-		ft_printf(" %d",a->val);
+		ft_printf(" %d", a->val);
 		a = a->nxt;
 	}
+	ft_printf("\n");
 }
